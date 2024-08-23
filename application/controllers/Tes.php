@@ -5,6 +5,7 @@ class Tes extends CI_Controller
 {
     public function index()
     {
+        $this->load->view('templates/headerTemplate');
         $this->load->view('tes');
     }
 }
