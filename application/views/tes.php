@@ -1,1 +1,1 @@
-<H1>HAKKO</H1>
+<H1 class="text-blue-500">HAKKO</H1>

@@ -5,6 +5,7 @@ class Tes extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('tes');
+        $data['isi'] = 'tes';
+        $this->load->view('layouts/wrapper', $data);
     }
 }
