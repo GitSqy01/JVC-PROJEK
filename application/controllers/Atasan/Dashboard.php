@@ -5,7 +5,7 @@ class Dashboard extends CI_Controller
 {
     public function index()
     {
-        $data['isi'] = 'atasan/dashboard';
+        $data['isi'] = 'Atasan/dashboard';
         $this->load->view('layouts/wrapper', $data);
     }
 }
