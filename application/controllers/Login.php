@@ -19,7 +19,9 @@ class Login extends CI_Controller
             $data['isi'] = 'login';
             $data['judul'] = 'Login';
             $data['validation_errors'] = validation_errors();
-            $this->load->view('layouts/wrapper', $data);
+            $this->load->view('layouts/header', $data);
+            $this->load->view('login', $data);
+            $this->load->view('layouts/footer', $data);
         } else {
             $this->_login();
         }
@@ -41,6 +43,9 @@ class Login extends CI_Controller
                 $this->session->set_userdata('nik', $user['nik']);
                 $this->session->set_userdata('nama', $user['nama']);
                 $this->session->set_userdata('role_id', $user['role_id']);
+                $this->session->set_userdata('bagian', $user['bagian']);
+                $this->session->set_userdata('departement', $user['departement']);
+                $this->session->set_userdata('image', $user['image']);
 
                 if ($user['role_id'] == 1) {
                     redirect('atasan/dashboard');
