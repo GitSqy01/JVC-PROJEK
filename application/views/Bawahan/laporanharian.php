@@ -21,7 +21,7 @@
                     <div class="border p-2">
                         <div class="flex items-start">
                             <label for="" class="ml-2 w-[200px]">Balancing Program</label>
-                            <input type="text" name="program" id="" placeholder="Masukan judul record" class="w-full border border-black rounded-sm">
+                            <input type="text" name="program" id="program" readonly placeholder="Masukan judul record" class="w-full border border-black rounded-sm">
                         </div>
                         <div class="flex items-start my-2">
                             <label for="" class="ml-2 mr-[8.5rem]">Info</label>
