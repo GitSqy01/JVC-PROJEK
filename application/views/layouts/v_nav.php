@@ -35,9 +35,9 @@
                             </a>
                         </li>
                         <li class="p-2 border-l-8 border-black bg-gray-200">
-                            <a href="<?= base_url('index.php/bawahan/usermanage'); ?>" class="text-gray-600 dark:text-gray-500 font-semibold">
+                            <a href="<?= base_url('index.php/bawahan/dailytask'); ?>" class="text-gray-600 dark:text-gray-500 font-semibold">
                                 <img src="<?= base_url('assets/icons/user.svg') ?>" alt="" class="h-6 w-6 inline-block mx-2">
-                                User Manage
+                                Daily Tasks
                             </a>
                         </li>
                     </ul>

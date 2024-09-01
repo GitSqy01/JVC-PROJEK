@@ -17,11 +17,14 @@
             </div>
             <h3 class="ml-2">Record</h3>
             <div class="p-2 m-2">
-                <form action="">
-                    <div class="border p-2">
+                <form action="<?php echo site_url('bawahan/laporanharian/addRecord') ?>">
+                    <div class="border p-2" id="balancing-container">
+                        <button type="button" id="add-input" class="ml-2 px-2 py-1 border border-black rounded-sm">+</button>
                         <div class="flex items-start">
                             <label for="" class="ml-2 w-[200px]">Balancing Program</label>
-                            <input type="text" name="program" id="program" readonly placeholder="Masukan judul record" class="w-full border border-black rounded-sm">
+                            <div class="flex flex-col w-full">
+                                <input type="text" name="program[]" id="program" readonly placeholder="Masukan judul record" class="w-full border border-black rounded-sm my-1">
+                            </div>
                         </div>
                         <div class="flex items-start my-2">
                             <label for="" class="ml-2 mr-[8.5rem]">Info</label>
