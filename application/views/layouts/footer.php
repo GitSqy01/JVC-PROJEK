@@ -83,82 +83,210 @@
 </script> -->
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Function to handle input click to open file dialog
-    function openFolder(event) {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.style.display = 'none';
+// document.addEventListener('DOMContentLoaded', function() {
+//     // Function to handle input click to open file dialog
+//     function openFolder(event) {
+//         const fileInput = document.createElement('input');
+//         fileInput.type = 'file';
+//         fileInput.style.display = 'none';
 
-        fileInput.addEventListener('change', function () {
-            if (fileInput.files.length > 0) {
-                event.target.value = fileInput.files[0].name;
-            }
-        });
+//         fileInput.addEventListener('change', function () {
+//             if (fileInput.files.length > 0) {
+//                 event.target.value = fileInput.files[0].name;
+//             }
+//         });
 
-        fileInput.click();
-    }
+//         fileInput.click();
+//     }
 
-    // Handle click event on the 'Balancing Program' input
-    const programInput = document.getElementById('program');
-    if (programInput) {
-        programInput.addEventListener('click', openFolder);
-    }
+//     // Handle click event on the 'Balancing Program' input
+//     const programInput = document.getElementById('program');
+//     if (programInput) {
+//         programInput.addEventListener('click', openFolder);
+//     }
 
-    // Function to dynamically add new input fields
-    const addInputBtn = document.getElementById('add-input');
-    const firstInput = document.getElementById('program'); // Asumsikan input awal memiliki ID 'program'
+//     // Function to dynamically add new input fields
+//     const addInputBtn = document.getElementById('add-input');
+//     const firstInput = document.getElementById('program'); // Asumsikan input awal memiliki ID 'program'
     
-    if (addInputBtn && firstInput) {
-        addInputBtn.addEventListener('click', function() {
-            const newInput = document.createElement('input');
-            newInput.type = 'text';
-            newInput.name = 'program[]';
-            newInput.placeholder = 'Masukan judul record';
-            newInput.className = 'w-full border border-black rounded-sm';
-            newInput.readOnly = true;
+//     if (addInputBtn && firstInput) {
+//         addInputBtn.addEventListener('click', function() {
+//             const newInput = document.createElement('input');
+//             newInput.type = 'text';
+//             newInput.name = 'program[]';
+//             newInput.placeholder = 'Masukan judul record';
+//             newInput.className = 'w-full border border-black rounded-sm';
+//             newInput.readOnly = true;
 
-            // Tempatkan input baru tepat setelah input 'program' awal
-            firstInput.parentNode.insertBefore(newInput, firstInput.nextSibling);
+//             // Tempatkan input baru tepat setelah input 'program' awal
+//             firstInput.parentNode.insertBefore(newInput, firstInput.nextSibling);
 
-            // Mungkin perlu tambahkan div atau pemisah jika diperlukan
-            const divider = document.createElement('div');
-            divider.className = 'mt-2'; // Memberikan margin atas
-            firstInput.parentNode.insertBefore(divider, newInput.nextSibling);
-        });
-    }
+//             // Mungkin perlu tambahkan div atau pemisah jika diperlukan
+//             const divider = document.createElement('div');
+//             divider.className = 'mt-2'; // Memberikan margin atas
+//             firstInput.parentNode.insertBefore(divider, newInput.nextSibling);
+//         });
+//     }
 
-    // Function to add tasks to the table
-    const addButton = document.querySelector('button[type="submit"]');
-    const taskNumberInput = document.getElementById('taskNumber');
-    const tbody = document.querySelector('table tbody');
-    if (addButton && taskNumberInput && tbody) {
-        addButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            const numTasks = parseInt(taskNumberInput.value, 10) || 0;
-            for (let i = 0; i < numTasks; i++) {
-                const row = tbody.insertRow();
-                const cell1 = row.insertCell(0);
-                const cell2 = row.insertCell(1);
-                const cell3 = row.insertCell(2);
+//     // Function to add tasks to the table
+//     const addButton = document.querySelector('button[type="submit"]');
+//     const taskNumberInput = document.getElementById('taskNumber');
+//     const tbody = document.querySelector('table tbody');
+//     let totalTask = document.getElementById('totalTask');
+//     let percenTask = document.getElementById('percenTask');
 
-                cell1.textContent = tbody.rows.length;
-                cell2.textContent = `Tugas ${tbody.rows.length}`;
+//     let completedTask = 0;
 
-                cell1.className = 'p-4 border-b border-gray-200';
-                cell2.className = 'p-4 border-b border-gray-200';
-                cell3.className = 'p-4 border-b border-gray-200';
+//     if (addButton && taskNumberInput && tbody) {
+//         addButton.addEventListener('click', function(event) {
+//             event.preventDefault();
+//             const numTasks = parseInt(taskNumberInput.value, 10) || 0;
+//             for (let i = 0; i < numTasks; i++) {
+//                 const row = tbody.insertRow();
+//                 const cell1 = row.insertCell(0);
+//                 const cell2 = row.insertCell(1);
+//                 const cell3 = row.insertCell(2);
 
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Hapus';
-                deleteButton.className = 'px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600';
-                deleteButton.onclick = () => row.remove();
+//                 cell1.textContent = tbody.rows.length;
+//                 // cell2.textContent = `Tugas ${tbody.rows.length}`;
+                
+//                 const inputTask = document.createElement('input');
+//                 inputTask.type = 'text';
+//                 inputTask.name = `task[]`;
+//                 inputTask.placeholder = 'Masukan tugas';
+//                 inputTask.className = 'w-full border border-black rounded-sm';
+//                 inputTask.required = true;
+                
+//                 cell2.appendChild(inputTask);
 
-                cell3.appendChild(deleteButton);
-            }
-        });
-    }
-});
+//                 cell1.className = 'p-4 border-b border-gray-200';
+//                 cell2.className = 'p-4 border-b border-gray-200';
+//                 cell3.className = 'p-4 border-b border-gray-200';
+
+//                 const finishButton = document.createElement('button');
+//                 finishButton.textContent = 'Selesai';
+//                 finishButton.className = 'mr-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600';
+//                 finishButton.onclick = () => {
+//                     completedTask += 1;
+//                     updatePecentsTask();
+//                 }
+//                 cell3.appendChild(finishButton);
+
+//                 const deleteButton = document.createElement('button');
+//                 deleteButton.textContent = 'Hapus';
+//                 deleteButton.className = 'px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600';
+//                 // deleteButton.onclick = () => row.remove();
+//                 deleteButton.onclick = () => {
+//                     const rowCount = tbody.rows.length;
+//                     if (rowCount > 0) {
+//                         // const lastRow = tbody.rows[rowCount - 1];
+//                         const lasRow = rowCount - 1;
+                        
+//                         totalTask.textContent = `${lasRow}`;
+//                         row.remove();
+//                     } else {
+//                         console.error('No tasks to update row number');
+//                     }
+//                 }
+
+//                 cell3.appendChild(deleteButton);
+
+//                 if (totalTask) {
+//                     totalTask.textContent = `${tbody.rows.length}`;
+//                 } else {
+//                     console.error('Element totalTask not found');
+//                 }
+//             }
+//         });
+//     }
+// });
+// document.addEventListener('DOMContentLoaded', function() {
+
+//     const addButton = document.querySelector('button[type="submit"]');
+//     const taskNumberInput = document.getElementById('taskNumber');
+//     const tbody = document.querySelector('table tbody');
+//     let totalTask = document.getElementById('totalTask');
+//     let percenTask = document.getElementById('percenTask');
+
+//     let completedTasks = 0; // Counter untuk tugas yang selesai
+
+//     // Fungsi untuk menambahkan tugas
+//     function addTask() {
+//         const numTasks = parseInt(taskNumberInput.value, 10) || 0;
+//         for (let i = 0; i < numTasks; i++) {
+//             const row = tbody.insertRow();
+//             const cell1 = row.insertCell(0);
+//             const cell2 = row.insertCell(1);
+//             const cell3 = row.insertCell(2);
+
+//             cell1.textContent = tbody.rows.length;
+//             cell1.className = 'p-4 border-b border-gray-200';
+            
+//             const inputTask = document.createElement('input');
+//             inputTask.type = 'text';
+//             inputTask.name = `task[]`;
+//             inputTask.placeholder = 'Masukan tugas';
+//             inputTask.className = 'w-full border border-black rounded-sm';
+            
+//             cell2.appendChild(inputTask);
+//             cell2.className = 'p-4 border-b border-gray-200';
+
+//             // Tombol selesai
+//             const finishButton = document.createElement('button');
+//             finishButton.textContent = 'Selesai';
+//             finishButton.className = 'mr-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600';
+//             finishButton.onclick = () => {
+//                 if(!row.classList.contains('completed')){
+//                     completedTasks += 1;
+//                     finishButton.disabled = true;
+//                     finishButton.className = 'cursor-not-allowed mr-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600';
+//                     row.className = 'completed';
+//                     updatePercentage(); // Memperbarui persentase setelah menandai tugas sebagai selesai
+//                 }
+//             }
+//             cell3.appendChild(finishButton);
+
+//             // Tombol hapus
+//             const deleteButton = document.createElement('button');
+//             deleteButton.textContent = 'Hapus';
+//             deleteButton.className = 'px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600';
+//             deleteButton.onclick = () => {
+//                 if (row.classList.contains('completed')) {
+//                     completedTasks -= 1; // Mengurangi hitungan tugas selesai jika tugas tersebut telah diselesaikan
+//                 }
+//                 row.remove();
+//                 updateTaskCount();
+//             }
+//             cell3.appendChild(deleteButton);
+//             cell3.className = 'p-4 border-b border-gray-200';
+
+//             updateTaskCount();
+//         }
+//     }
+
+//     // Memperbarui jumlah tugas dan persentase
+//     function updateTaskCount() {
+//         const rowCount = tbody.rows.length;
+//         totalTask.textContent = rowCount.toString();
+//         updatePercentage();
+//     }
+
+//     // Memperbarui persentase tugas yang selesai
+//     function updatePercentage() {
+//         if (totalTask.textContent === "0") {
+//             percenTask.textContent = "0%";
+//         } else {
+//             let percentage = (completedTasks / parseInt(totalTask.textContent)) * 100;
+//             percenTask.textContent = `${percentage.toFixed(2)}%`;
+//         }
+//     }
+
+//     // Event listener untuk tombol tambah
+//     addButton.addEventListener('click', function(event) {
+//         event.preventDefault();
+//         addTask();
+//     });
+// });
 </script>
 
 </body>

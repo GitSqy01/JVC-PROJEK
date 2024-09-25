@@ -35,6 +35,9 @@ class Login extends CI_Controller
         // Ambil data pengguna berdasarkan NIK
         $user = $this->db->get_where('user', ['nik' => $nik])->row_array();
 
+        var_dump($user);
+        // die;
+
         // Cek apakah pengguna ada
         if ($user) {
             // Verifikasi password (langsung dibandingkan tanpa hash)
