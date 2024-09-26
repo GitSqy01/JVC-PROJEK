@@ -22,10 +22,24 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        $data['judul'] = 'Dashboard';
-        $data['isi'] = 'Bawahan/dashboard';
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
-
-        $this->load->view('layouts/wrapper', $data);
+        if($this->session->userdata('bagian') == 'Main Program'){
+            $data['judul'] = 'Dashboard';
+            $data['isi'] = 'Bawahan/dashboard';
+            $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+    
+            $this->load->view('layouts/wrapper', $data);
+        }elseif($this->session->userdata('bagian') == 'Sub Program'){
+            $data['judul'] = 'Dashboard';
+            $data['isi'] = 'Bawahan/dashboard_sub';
+            $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+            
+            $this->load->view('layouts/wrapper', $data);
+        }elseif($this->session->userdata('bagian') == 'Document'){
+            $data['judul'] = 'Dashboard';
+            $data['isi'] = 'Bawahan/dashboard_doc';
+            $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+            
+            $this->load->view('layouts/wrapper', $data);
+        }
     }
 }
